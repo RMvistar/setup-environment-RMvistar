@@ -1,18 +1,13 @@
-import http from "http";
+import express from "express";
+const app = express();
 
 const PORT = 4000;
 
-const server = http.createServer((req, res) => {
-  if (req.url === "/" && req.method === "GET") {
-    res.statusCode = 200;
-    res.end("Server is running!");
-  } else {
-    res.statusCode = 404;
-    res.end("Route not found");
-  }
+app.get("/", (req, res) => {
+  res.json({ message: "I hear you!" });
 });
 
 // Start the server
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server running at ${PORT}`);
 });
